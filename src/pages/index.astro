@@ -1,0 +1,242 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site";
+
+const hasAndroid = Boolean(siteConfig.androidDownloadUrl);
+const hasStore = Boolean(siteConfig.appStoreUrl || siteConfig.playStoreUrl);
+---
+
+<BaseLayout title={siteConfig.name}>
+  <section class="hero card">
+    <div class="hero-top">
+      <img
+        class="hero-icon"
+        src={siteConfig.appIcon}
+        width="96"
+        height="96"
+        alt={`${siteConfig.name} 应用图标`}
+      />
+      <div>
+        <p class="eyebrow">官方下载与介绍</p>
+        <h1>{siteConfig.fullName}</h1>
+        <p class="lede">{siteConfig.description}</p>
+      </div>
+    </div>
+    <div class="cta" id="download">
+      {
+        hasAndroid && (
+          <a class="btn" href={siteConfig.androidDownloadUrl} rel="noopener">
+            下载 Android 版
+          </a>
+        )
+      }
+      {siteConfig.playStoreUrl && (
+        <a class="btn btn-secondary" href={siteConfig.playStoreUrl} rel="noopener noreferrer">
+          Google Play
+        </a>
+      )}
+      {siteConfig.appStoreUrl && (
+        <a class="btn btn-secondary" href={siteConfig.appStoreUrl} rel="noopener noreferrer">
+          App Store
+        </a>
+      )}
+      {!hasAndroid && !hasStore && (
+        <p class="note">安装包链接即将上线，请联系 <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a> 获取测试版。</p>
+      )}
+    </div>
+    <p class="meta">
+      当前版本 {siteConfig.version} · 包名 {siteConfig.androidPackage}
+      {siteConfig.wechatMiniProgramPath && (
+        <> · 微信小程序：{siteConfig.wechatMiniProgramPath}</>
+      )}
+    </p>
+  </section>
+
+  <section id="screenshots" class="section">
+    <h2>应用界面预览</h2>
+    <p class="section-lede">以下为产品实际界面截图，供审核与下载前参考。</p>
+    <div class="shots">
+      {
+        siteConfig.screenshots.map((shot) => (
+          <figure class="shot card">
+            <img src={shot.src} alt={shot.title} loading="lazy" width="360" height="780" />
+            <figcaption>
+              <strong>{shot.title}</strong>
+              <span>{shot.caption}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <h2>应用介绍</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>日历看清每一天</h3>
+        <p>月历视图，选中日查看当天待办；有事项的日期打点，逾期、今日、进行中、已完成一目了然。</p>
+      </article>
+      <article class="card">
+        <h3>清单与提醒</h3>
+        <p>为任务设置截止时间与提醒（提前 1 天、提前 30 分钟、截止时）。到点在本机闹钟提醒，协同人各自收到通知。</p>
+      </article>
+      <article class="card">
+        <h3>复制一整天</h3>
+        <p>把某一天的任务批量复制到另一日期，适合固定作息、旅行或补记，可选是否带上协同人与步骤。</p>
+      </article>
+      <article class="card">
+        <h3>协同清单搭子</h3>
+        <p>情侣、室友、小团队共享空间，同一条事项多人可编辑；支持任务码邀请，负责人与参与人权限分明。</p>
+      </article>
+      <article class="card">
+        <h3>离线可用</h3>
+        <p>已同步到本机的任务可离线查看与修改，联网后按顺序合并操作，减少漏改与冲突。</p>
+      </article>
+      <article class="card">
+        <h3>微信登录（可选）</h3>
+        <p>可使用微信账号便捷登录；我们仅获取开放平台授权范围内的信息，详见隐私政策。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section card">
+    <h2>下载说明</h2>
+    <ol class="steps">
+      <li>点击上方「下载 Android 版」获取安装包（APK）。</li>
+      <li>若系统提示「未知来源」，请在系统设置中允许来自浏览器的安装，仅安装本官网提供的包。</li>
+      <li>首次打开可按引导设置昵称；协同任务可通过分享的任务码加入。</li>
+      <li>iOS / 应用商店版本上架后，本页将同步商店链接。</li>
+    </ol>
+    <p class="note">
+      微信开放平台审核填写的官网地址请使用：<strong>{siteConfig.origin}</strong>（需 HTTPS，与 Cloudflare Pages 部署域名一致）。
+    </p>
+  </section>
+
+  <section class="section card">
+    <h2>联系我们</h2>
+    <p>
+      产品反馈与隐私相关请求请发送邮件至
+      <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>。
+      我们将在合理期限内回复。
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    margin-bottom: 2rem;
+    padding: 1.75rem 1.5rem;
+  }
+  .hero-top {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+  .hero-icon {
+    border-radius: 22px;
+    box-shadow: 0 8px 24px rgba(22, 119, 255, 0.2);
+  }
+  .hero-top h1 {
+    margin-top: 0;
+  }
+  .section-lede {
+    color: var(--muted);
+    margin: -0.5rem 0 1rem;
+    font-size: 0.95rem;
+  }
+  .shots {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+  .shot {
+    margin: 0;
+    padding: 0.75rem;
+    overflow: hidden;
+  }
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #111;
+  }
+  .shot figcaption {
+    margin-top: 0.65rem;
+    font-size: 0.88rem;
+  }
+  .shot figcaption strong {
+    display: block;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .shot figcaption span {
+    color: var(--muted);
+  }
+  .eyebrow {
+    font-size: 0.8rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+  h1 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    line-height: 1.25;
+  }
+  .lede {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin: 0 0 1.25rem;
+    max-width: 42em;
+  }
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .meta,
+  .note {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin: 0.5rem 0 0;
+  }
+  .section {
+    margin-bottom: 1.5rem;
+  }
+  .section > h2 {
+    font-size: 1.35rem;
+    margin: 0 0 1rem;
+  }
+  .grid {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .grid h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+  }
+  .grid p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .steps {
+    color: var(--muted);
+    padding-left: 1.25rem;
+  }
+  .steps li {
+    margin-bottom: 0.5rem;
+  }
+</style>

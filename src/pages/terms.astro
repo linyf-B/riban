@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site";
+---
+
+<BaseLayout title="用户协议" description={`${siteConfig.name}用户协议`}>
+  <article class="prose card">
+    <h1>用户协议</h1>
+    <p>更新日期：{siteConfig.updatedAt}</p>
+    <p>欢迎使用「{siteConfig.name}」。请在使用前仔细阅读本协议。</p>
+
+    <h2>1. 服务说明</h2>
+    <p>
+      {siteConfig.name} 提供个人与协同待办、日历、提醒及数据同步服务。我们有权根据业务需要调整功能，并尽量提前通知用户。
+    </p>
+
+    <h2>2. 账号与安全</h2>
+    <ul>
+      <li>您应妥善保管账号与设备，对账号下的操作负责。</li>
+      <li>不得利用本服务从事违法、侵权、骚扰或破坏系统安全的行为。</li>
+    </ul>
+
+    <h2>3. 用户内容</h2>
+    <p>
+      您在协同空间中创建的任务标题等内容由您自行负责。您授予我们为提供同步与展示所必需的处理权限。
+    </p>
+
+    <h2>4. 知识产权</h2>
+    <p>应用界面、标识与相关知识产权归运营方或权利人所有。未经授权不得复制或用于商业目的。</p>
+
+    <h2>5. 免责声明</h2>
+    <p>
+      我们将尽力保障服务稳定，但因网络、设备或不可抗力导致的数据延迟、提醒未触发等，在法律允许范围内不承担间接损失责任。重要事项请另行备份。
+    </p>
+
+    <h2>6. 协议变更与终止</h2>
+    <p>我们可更新本协议；若您继续使用即视为接受。您可随时停止使用并申请删除数据。</p>
+
+    <h2>7. 适用法律与联系</h2>
+    <p>
+      本协议适用中华人民共和国法律（冲突法除外）。争议可向我们联系协商：
+      <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>。
+    </p>
+  </article>
+</BaseLayout>

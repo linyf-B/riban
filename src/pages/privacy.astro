@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site";
+---
+
+<BaseLayout title="隐私政策" description={`${siteConfig.name}隐私政策`}>
+  <article class="prose card">
+    <h1>隐私政策</h1>
+    <p>更新日期：{siteConfig.updatedAt}</p>
+    <p>
+      「{siteConfig.name}」（{siteConfig.tagline}）由 {siteConfig.operatorName} 提供。使用本应用即表示您阅读并同意本政策。
+    </p>
+
+    <h2>1. 我们收集的信息</h2>
+    <ul>
+      <li><strong>账号信息</strong>：您设置的昵称、登录标识（如微信开放平台授权返回的 OpenID，仅在您选择微信登录时）。</li>
+      <li><strong>任务与协同数据</strong>：您创建的待办标题、截止时间、提醒设置、协同空间成员关系、操作记录等，用于同步与展示。</li>
+      <li><strong>设备信息</strong>：设备标识符（用于多端同步与冲突合并）、系统版本，用于保障服务稳定。</li>
+      <li><strong>本地闹钟</strong>：提醒功能在您的设备本地调度，不依赖我们读取您的通讯录或短信。</li>
+    </ul>
+
+    <h2>2. 信息的使用</h2>
+    <ul>
+      <li>提供待办、日历、协同、提醒与数据同步功能；</li>
+      <li>改进产品体验与修复故障；</li>
+      <li>履行法律法规要求。</li>
+    </ul>
+
+    <h2>3. 信息的存储与共享</h2>
+    <p>
+      协同数据存储在您配置或我们提供的同步服务中，采用传输加密（HTTPS）。除以下情形外，我们不会向第三方出售您的个人信息：
+    </p>
+    <ul>
+      <li>经您明确同意；</li>
+      <li>为完成微信登录等必要功能，与腾讯微信开放平台按其规则处理授权信息；</li>
+      <li>法律法规或监管机关要求。</li>
+    </ul>
+
+    <h2>4. 您的权利</h2>
+    <p>
+      您可在应用内删除任务、退出协同空间，或通过邮件 {siteConfig.contactEmail} 申请查询、更正或删除与您相关的账号与数据（法律要求保留的除外）。
+    </p>
+
+    <h2>5. 未成年人</h2>
+    <p>若您未满 14 周岁，请在监护人同意与指导下使用本应用。</p>
+
+    <h2>6. 政策更新</h2>
+    <p>我们可能更新本政策，并在本页面公布新版生效日期。重大变更将通过应用内提示等方式告知。</p>
+
+    <h2>7. 联系我们</h2>
+    <p>
+      运营方：{siteConfig.operatorName}<br />
+      邮箱：<a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+    </p>
+  </article>
+</BaseLayout>
