@@ -2,7 +2,7 @@
 
 静态官网，部署到 **Cloudflare Pages**，用于微信开放平台等审核。
 
-- **Gitee 仓库**：[gitee.com/linyf-wyh/riban](https://gitee.com/linyf-wyh/riban)（本目录为独立 Git 根，分支 `master`）
+- **GitHub 仓库**：[github.com/linyf-B/riban](https://github.com/linyf-B/riban)（本目录为独立 Git 根，供 Cloudflare Pages 连接）
 - 本地：`npm install` → `npm run dev`
 - 部署说明：[docs/DEPLOY-CLOUDFLARE.md](./docs/DEPLOY-CLOUDFLARE.md)
 - 上线前修改：`src/config/site.ts`（邮箱、运营方、下载链接）
