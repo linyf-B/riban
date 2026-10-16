@@ -5,9 +5,18 @@ export async function onRequest(context) {
     return new Response("Not found", { status: 404 });
   }
 
-  const upstream = await fetch(UPSTREAM);
+  let upstream;
+  try {
+    upstream = await fetch(UPSTREAM);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "fetch failed";
+    return new Response(`upstream error: ${message}`, { status: 502 });
+  }
+
   if (!upstream.ok || !upstream.body) {
-    return new Response("Download unavailable", { status: 502 });
+    return new Response(`upstream ${upstream.status} body=${Boolean(upstream.body)}`, {
+      status: 502,
+    });
   }
 
   const headers = new Headers();
