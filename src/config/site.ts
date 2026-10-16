@@ -9,10 +9,10 @@ export const siteConfig = {
   origin: import.meta.env.SITE ?? "https://riban.pages.dev",
   version: "1.0.0",
   androidPackage: "app.riban.riban",
-  /** Android 安装包直链，文件在 47.108.53.157:/home/ubuntu/linyf_app/ */
+  /** 经 Pages 反代到 47.108.53.157，浏览器只访问 HTTPS */
   androidDownloadUrl:
     import.meta.env.PUBLIC_ANDROID_DOWNLOAD_URL ||
-    "http://47.108.53.157/download/app-debug.apk",
+    "https://riban.pages.dev/download/app-debug.apk",
   /** 上架应用商店后替换；暂无则留空字符串 */
   appStoreUrl: import.meta.env.PUBLIC_APP_STORE_URL || "",
   playStoreUrl: import.meta.env.PUBLIC_PLAY_STORE_URL || "",
