@@ -18,7 +18,7 @@ export const siteConfig = {
   playStoreUrl: import.meta.env.PUBLIC_PLAY_STORE_URL || "",
   /** 微信小程序（若已上线，填路径或留空） */
   wechatMiniProgramPath: import.meta.env.PUBLIC_WECHAT_MP_PATH || "",
-  contactEmail: import.meta.env.PUBLIC_CONTACT_EMAIL || "hello@example.com",
+  contactEmail: import.meta.env.PUBLIC_CONTACT_EMAIL || "1989484309@qq.com",
   operatorName: import.meta.env.PUBLIC_OPERATOR_NAME || "日办产品团队",
   updatedAt: "2026-10-15",
   appIcon: "/images/app-icon.png",
